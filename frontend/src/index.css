@@ -1,0 +1,8 @@
+body {
+  background-color: var(--bg-canvas);
+  background-image: url('./assets/bgImage.svg');
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.5;
+}

@@ -1,0 +1,265 @@
+/* ==========================================
+   1. CORE ARCHITECTURE, THEME SYSTEM & BG
+   ========================================== */
+:root {
+  /* Ultra-Clean Light Mode Surface Scale */
+  --bg-canvas: #fafafa;         /* Minimalist, gallery-clean white canvas */
+  --bg-navbar: rgba(255, 255, 255, 0.75);
+  
+  /* Refined Intellectual Indigo Accent System */
+  --primary: #4338ca;           /* Slightly safer, highly vibrant Indigo */
+  --primary-hover: #312e81;     /* Deep indigo tone for micro-interactions */
+  --primary-glow: rgba(67, 56, 202, 0.08);
+  --primary-ambient: rgba(67, 56, 202, 0.03);
+  
+  /* High-End Editorial Text Hierarchy */
+  --text-bright: #ffffff;
+  --text-dark: #09090b;         /* Zinc 950 - ink black for pristine presence */
+  --text-main: #27272a;         /* Zinc 800 - soft reading charcoal */
+  --text-muted: #71717a;        /* Zinc 500 - timeless editorial gray */
+  
+  /* Structural Lines & Smooth Curves */
+  --border-light: rgba(9, 9, 11, 0.06); /* Sophisticated, barely-there borders */
+  --border-primary: rgba(67, 56, 202, 0.15);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  
+  /* Interaction Curves */
+  --transition-smooth: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); /* Ultra-responsive ease-out */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--bg-canvas);
+   background-image: url('./assets/bgImage.svg');
+
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+/* App Wrapper mapping customized asset SVG link */
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  
+  
+ 
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* ==========================================
+   2. HIGH-LEGIBILITY BLURRED GLASS NAVBAR
+   ========================================== */
+.navbar {
+  background: var(--bg-navbar);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-light);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: var(--transition-smooth);
+}
+
+.nav-container {
+  max-width: 1200px; /* Reduced for a more balanced grid profile */
+  margin: 0 auto;
+  padding-inline: 24px;
+  height: 68px; /* Slightly lower profile for elegance */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo Section elements */
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 10px;
+  height: 10px;
+  background: var(--primary);
+  border-radius: 50%;
+  position: relative;
+}
+
+/* Subtle, clean networking activity ripple animation */
+.logo-icon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: inherit;
+  animation: ripple 3s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.logo-text {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text-dark);
+  user-select: none;
+}
+
+.logo-text span {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.badge {
+  font-size: 11px;
+  background: #f4f4f5; /* Neutral background is less noisy */
+  color: var(--text-dark);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border: 1px solid var(--border-light);
+  user-select: none;
+}
+
+/* Navigation Handles */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Shared structural layout for both Links and real Form Buttons */
+.nav-btn {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.nav-btn:hover {
+  color: var(--text-dark);
+}
+
+/* Solid Action Button definitions */
+.register-cta {
+  background: var(--text-dark); /* Modern apps use dark neutrals for primary CTAs */
+  color: var(--text-bright);
+}
+
+.register-cta:hover {
+  background: #27272a;
+  transform: translateY(-0.5px);
+}
+
+.register-cta:active {
+  transform: translateY(0.5px);
+}
+
+/* Professional Crimson/Slate Variant for Logout action button */
+.logout-btn {
+  color: #dc2626;
+  background: rgba(220, 38, 38, 0.04);
+}
+
+.logout-btn:hover {
+  color: white;
+  background-color: #dc2626;
+}
+
+/* Dynamic Active States (React Router Targets) */
+.active-login {
+  color: var(--text-dark);
+  background: #f4f4f5;
+}
+
+.active-register {
+  background: var(--primary);
+  color: var(--text-bright);
+}
+
+/* ==========================================
+   3. MAIN VIEWPORT & AMBIENT INTERACTION
+   ========================================== */
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* CRITICAL: Dashboard Chat Edge-to-Edge Fluidity */
+.main-content:has(.main-container) {
+  display: block;
+  padding: 0;
+}
+
+/* Organic soft ambient light element */
+.glow-ambient {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--primary-ambient) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+  animation: pulseGlow 8s ease-in-out infinite alternate;
+}
+
+/* Hide ambient glow element on active app viewports */
+.main-content:has(.main-container) .glow-ambient {
+  display: none;
+}
+
+/* ==========================================
+   4. PERFORMANCE MICRO-ANIMATIONS
+   ========================================== */
+@keyframes ripple {
+  0% { 
+    transform: scale(1); 
+    opacity: 0.8; 
+  }
+  100% { 
+    transform: scale(3.5); 
+    opacity: 0; 
+  }
+}
+
+@keyframes pulseGlow {
+  0% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.02);
+  }
+}

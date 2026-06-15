@@ -1,0 +1,171 @@
+/* Custom properties configured for an Emerald brand system */
+:root {
+  --primary: #059669;
+  --primary-hover: #047857;
+  --primary-glow: rgba(5, 150, 105, 0.15);
+  --bg-card: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --text-label: #475569;
+  --border-color: #e2e8f0;
+  --border-hover: #cbd5e1;
+  --radius-card: 16px;
+  --radius-input: 10px;
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+body {
+  background-color: var(--bg-canvas);
+  background-image: url('./assets/bgImage.svg');
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+
+/* Main wrapper centering the registration card */
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh; /* Ensures layout is vertically centered across viewports */
+  padding: 24px;
+  background-color: #f8fafc; /* Premium subtle offset background */
+}
+
+/* The registration card surface with an scale-up entry animation */
+.register-card {
+  background: var(--bg-card);
+  padding: 48px 40px;
+  border-radius: var(--radius-card);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 
+              0 20px 25px -5px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 440px; /* Slight extra width breathing room for registration fields */
+  text-align: center;
+  border: 1px solid rgba(241, 245, 249, 0.8);
+  
+  /* Smooth scale up entry animation on page load */
+  animation: registerCardEnter 0.55s cubic-bezier(0.34, 1.3, 0.64, 1) forwards;
+  opacity: 0;
+  transform: scale(0.96) translateY(10px);
+}
+
+.register-card h2 {
+  color: var(--text-main);
+  font-size: 28px;
+  margin-bottom: 8px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.register-card p {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 32px;
+  line-height: 1.5;
+}
+
+/* Form layout structure */
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* Form input wrapping elements with staggered fade-in animations */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 8px;
+  animation: fieldFadeIn 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+/* Optional staggered load delays for a sequential entry feel */
+.input-group:nth-child(1) { animation-delay: 0.1s; }
+.input-group:nth-child(2) { animation-delay: 0.15s; }
+.input-group:nth-child(3) { animation-delay: 0.2s; }
+.input-group:nth-child(4) { animation-delay: 0.25s; }
+
+.input-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-label);
+  letter-spacing: 0.2px;
+}
+
+/* Input field structural rules */
+.input-group input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-input);
+  font-size: 15px;
+  color: var(--text-main);
+  outline: none;
+  background-color: #ffffff;
+  transition: var(--transition-smooth);
+}
+
+/* Input interaction pseudo-states */
+.input-group input:hover {
+  border-color: var(--border-hover);
+}
+
+.input-group input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-glow);
+  background-color: #ffffff;
+}
+
+/* Distinctive Register button variant */
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-input);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2);
+  transition: var(--transition-smooth);
+  animation: fieldFadeIn 0.5s ease-out forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+
+.submit-btn:hover {
+  background-color: var(--primary-hover);
+  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.35);
+  transform: translateY(-1px);
+}
+
+.submit-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.2);
+}
+
+/* Keyframe Animations */
+@keyframes registerCardEnter {
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes fieldFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
