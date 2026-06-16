@@ -14,6 +14,11 @@ const Register = () => {
                 password
             });
             console.log(res.data);
+            alert(res.data.message);
+
+            if (res.data.success) {
+                window.location.href = "/Login"; 
+            }
         } catch (error) {
             console.error("Error registering user:", error);
         }
