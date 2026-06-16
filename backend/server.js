@@ -60,6 +60,7 @@ mongoose.connect(process.env.MONGODB_URI)
     console.log("Connected to MongoDB");
     server.listen(process.env.PORT || 3000, () => {
         console.log("Server running on port " + (process.env.PORT || 3000));
+        console.log("CLIENT_URL =", process.env.CLIENT_URL);
     });
 })
 .catch((err) => {
