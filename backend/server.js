@@ -51,11 +51,15 @@ let onlineUsers = new Map();
 app.use("/api/user", userRoute);
 app.use("/api/message", messageRoute);
 
+app.get("/", (req, res) => {
+  res.send("Velo Chat Backend Running");
+});
+
 mongoose.connect(process.env.MONGODB_URI)
 .then(() => {
     console.log("Connected to MongoDB");
-    server.listen(3000, () => {
-        console.log("Server running on port 3000");
+    server.listen(process.env.PORT || 3000, () => {
+        console.log("Server running on port " + (process.env.PORT || 3000));
     });
 })
 .catch((err) => {

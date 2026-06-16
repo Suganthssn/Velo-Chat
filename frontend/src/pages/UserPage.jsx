@@ -4,7 +4,7 @@ import { io } from "socket.io-client";
 import "../style/Main.css";
 
 
-const socket = io("http://localhost:3000", {
+const socket = io(`${import.meta.env.VITE_API_URL}`, {
   withCredentials: true,
   autoConnect: true
 });
@@ -49,7 +49,7 @@ const Main = () => {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/user/all", {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/user/all`, {
         withCredentials: true,
       });
       const filteredUsers = res.data.users.filter((u) => u._id !== currentUser._id);
@@ -63,7 +63,7 @@ const Main = () => {
     setSelectedUser(user);
     try {
       const res = await axios.get(
-        `http://localhost:3000/api/message/${currentUser._id}/${user._id}`,
+        `${import.meta.env.VITE_API_URL}/api/message/${currentUser._id}/${user._id}`,
         { withCredentials: true }
       );
       setMessages(res.data.messages || []);
@@ -88,7 +88,7 @@ const Main = () => {
       setText("");
 
       await axios.post(
-        "http://localhost:3000/api/message/send",
+        `${import.meta.env.VITE_API_URL}/api/message/send`,
         messageData,
         { withCredentials: true }
       );

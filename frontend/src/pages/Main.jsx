@@ -5,7 +5,7 @@ import Sidebar from "./Sidebar";
 import ChatWindow from "./ChatWindow";
 import "../style/Main.css";
 
-const socket = io("http://localhost:3000", {
+const socket = io(`${import.meta.env.VITE_API_URL}`, {
   withCredentials: true,
   autoConnect: true,
 });
@@ -72,7 +72,7 @@ const Main = () => {
   const fetchUsers = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/user/all",
+        `${import.meta.env.VITE_API_URL}/api/user/all`,
         {},
         { withCredentials: true }
       );
@@ -86,7 +86,7 @@ const Main = () => {
     setSelectedUser(user);
     try {
       const res = await axios.get(
-        `http://localhost:3000/api/message/${currentUser._id}/${user._id}`,
+        `${import.meta.env.VITE_API_URL}/api/message/${currentUser._id}/${user._id}`,
         { withCredentials: true }
       );
       setMessages(res.data.messages || []);
