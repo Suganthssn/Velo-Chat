@@ -19,7 +19,7 @@ const Login = () => {
             console.log("Success:", res.data);
           
             if(res.data.success){
-                window.location.href = "/Main"; 
+                window.location.href = "/main"; 
                 localStorage.setItem("token", res.data.token); // Store token in localStorage
                 localStorage.setItem("user", JSON.stringify(res.data.user)); // Store user info in localStorage
                 alert("Login successful! Redirecting to the main page..."); // Show success message on successful login
