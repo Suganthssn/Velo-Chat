@@ -32,7 +32,7 @@ export const register = async (req, res, next) => {
         res.cookie("token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "strict",
+            sameSite: "none",
             expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
         });
 
