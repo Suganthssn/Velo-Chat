@@ -75,6 +75,7 @@ export const login = async (req, res, next) => {
        
 
         if (!user) {
+            console.log(`Login attempt failed: User ${username} not found`);
             return res.status(400).json({
                 success: false,
                 message: "Invalid username or password"
@@ -91,6 +92,7 @@ export const login = async (req, res, next) => {
         
         
         if (!isValidPassword) {
+            console.log(`Login attempt failed: Invalid password for user ${username}`);
             return res.status(400).json({
                 success: false,
                 message: "Invalid username or password"
